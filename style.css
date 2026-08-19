@@ -181,6 +181,20 @@ body.alojamiento-page {
   box-shadow: 0 8px 25px rgba(191, 149, 63, 0.6);
 }
 
+.hero-deadline-note {
+  margin-top: 0.9rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.78);
+  font-style: italic;
+  font-weight: 300;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.4;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
 /* Indicador de Desplazamiento */
 .scroll-indicator {
   margin-top: 1.4rem;

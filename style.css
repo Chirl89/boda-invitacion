@@ -1,0 +1,400 @@
+/* ==========================================================================
+   Invitación de Boda Virtual - Carlos Gómez Lázaro & Andrea de Sousa Cubero
+   Estilo: Romántico / Otoñal Chic (Burdeos, Terracota, Oro Cálido, Crema)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+:root {
+  /* Paleta de Colores Otoñal & Elegante */
+  --primary-burgundy: #5c1d28;
+  --terracotta: #c46851;
+  --warm-gold: #d4af37;
+  --gold-gradient: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
+  --soft-cream: #faf6f0;
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(212, 175, 55, 0.25);
+  --text-dark: #2c2523;
+  --text-muted: #6e625e;
+  --sage-green: #687a69;
+  --shadow-soft: 0 10px 30px rgba(92, 29, 40, 0.08);
+  --shadow-hover: 0 15px 35px rgba(92, 29, 40, 0.15);
+  --radius-lg: 20px;
+  --radius-md: 12px;
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Reset & Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background-color: var(--soft-cream);
+  color: var(--text-dark);
+  line-height: 1.6;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(196, 104, 81, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(92, 29, 40, 0.05) 0%, transparent 40%);
+}
+
+/* Tipografía Especial */
+.font-script {
+  font-family: 'Alex Brush', cursive;
+}
+
+.font-serif {
+  font-family: 'Playfair Display', serif;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 1.5rem;
+  background: linear-gradient(rgba(44, 37, 35, 0.35), rgba(92, 29, 40, 0.5)),
+              url('portada.jpg') center 90%/cover no-repeat;
+  color: #ffffff;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at center, transparent 30%, rgba(0, 0, 0, 0.4) 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  animation: fadeIn 1.2s ease-out;
+}
+
+.hero-subtitle {
+  font-family: 'Playfair Display', serif !important;
+  font-size: 2.2rem;
+  letter-spacing: 2px;
+  text-transform: none;
+  color: #fcf6ba;
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.hero-title {
+  font-size: 3.8rem;
+  line-height: 1.15;
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.hero-date-badge {
+  display: inline-block;
+  margin: 1.5rem 0 2rem;
+  padding: 0.6rem 1.8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+}
+
+/* Cuenta Atrás */
+.countdown-container {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.countdown-box {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 1rem 1.2rem;
+  border-radius: var(--radius-md);
+  min-width: 85px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.countdown-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  display: block;
+}
+
+.countdown-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #fcf6ba;
+}
+
+/* Botones Principales */
+.btn-primary {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background: var(--gold-gradient);
+  color: var(--primary-burgundy);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: 50px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(191, 149, 63, 0.4);
+  transition: var(--transition);
+  margin-top: 2rem;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(191, 149, 63, 0.6);
+}
+
+/* Estructura General de Secciones */
+.section {
+  padding: 5rem 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.section-subtitle {
+  font-family: 'Alex Brush', cursive;
+  font-size: 2.2rem;
+  color: var(--terracotta);
+  display: block;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  color: var(--primary-burgundy);
+  margin-top: -0.3rem;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: var(--warm-gold);
+  margin: 1rem auto 0;
+}
+
+/* Tarjetas de Eventos */
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.card {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--gold-gradient);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+.card-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--terracotta);
+}
+
+.card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  color: var(--primary-burgundy);
+  margin-bottom: 0.8rem;
+}
+
+.card-info {
+  color: var(--text-muted);
+  margin-bottom: 1.2rem;
+  font-size: 0.95rem;
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.4rem;
+  border: 1px solid var(--terracotta);
+  color: var(--terracotta);
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
+
+.btn-outline:hover {
+  background: var(--terracotta);
+  color: #ffffff;
+}
+
+/* Formulario RSVP */
+.rsvp-section {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  padding: 3.5rem 2.5rem;
+  box-shadow: var(--shadow-hover);
+  border: 1px solid var(--glass-border);
+}
+
+.form-group {
+  margin-bottom: 1.8rem;
+}
+
+.form-label {
+  display: block;
+  font-weight: 600;
+  color: var(--primary-burgundy);
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 0.9rem 1.2rem;
+  border: 1px solid #e0d8d2;
+  border-radius: var(--radius-md);
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  background: var(--soft-cream);
+  color: var(--text-dark);
+  transition: var(--transition);
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  outline: none;
+  border-color: var(--terracotta);
+  box-shadow: 0 0 0 3px rgba(196, 104, 81, 0.15);
+  background: #ffffff;
+}
+
+.radio-group, .checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.custom-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--soft-cream);
+  padding: 0.6rem 1.2rem;
+  border-radius: 30px;
+  border: 1px solid #e2dad4;
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 0.95rem;
+}
+
+.custom-option:hover {
+  border-color: var(--terracotta);
+}
+
+.custom-option input[type="radio"]:checked + span,
+.custom-option input[type="checkbox"]:checked + span {
+  font-weight: 600;
+  color: var(--primary-burgundy);
+}
+
+/* Modales & Notificaciones Toast */
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--primary-burgundy);
+  color: #ffffff;
+  padding: 1.2rem 2rem;
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  z-index: 1000;
+  transform: translateY(150%);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-left: 5px solid var(--warm-gold);
+}
+
+.toast.show {
+  transform: translateY(0);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  background: var(--primary-burgundy);
+  color: #ffffff;
+  margin-top: 4rem;
+}
+
+footer p {
+  opacity: 0.9;
+  font-weight: 300;
+}
+
+/* Keyframes */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 768px) {
+  .hero-title { font-size: 2.8rem; }
+  .section { padding: 3.5rem 1rem; }
+  .rsvp-section { padding: 2rem 1.2rem; }
+  .countdown-box { min-width: 70px; padding: 0.8rem 0.8rem; }
+  .countdown-number { font-size: 1.7rem; }
+}

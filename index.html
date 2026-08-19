@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boda Carlos & Andrea | Invitación Oficial y RSVP</title>
+  <meta name="description" content="Invitación oficial de boda de Carlos Gómez Lázaro y Andrea de Sousa Cubero el 4 de Septiembre de 2027. ¡Confirma tu asistencia!">
+  
+  <!-- CSS Principal -->
+  <link rel="stylesheet" href="style.css?v=6">
+</head>
+<body>
+
+  <!-- HERO SECTION -->
+  <header class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-subtitle font-serif" style="font-family: 'Playfair Display', serif !important; font-size: 2.2rem; letter-spacing: 2px; text-transform: none; font-style: normal; color: #fcf6ba;">¡Nos casamos!</p>
+      <h1 class="hero-title font-serif">Carlos & Andrea</h1>
+
+      <div class="hero-date-badge font-serif">
+        4 DE SEPTIEMBRE DE 2027 • NÜA (CAZALEGAS - TOLEDO)
+      </div>
+
+      <!-- COUNTDOWN TIMER -->
+      <div class="countdown-container">
+        <div class="countdown-box">
+          <span id="countdown-days" class="countdown-number">00</span>
+          <span class="countdown-label">Días</span>
+        </div>
+        <div class="countdown-box">
+          <span id="countdown-hours" class="countdown-number">00</span>
+          <span class="countdown-label">Horas</span>
+        </div>
+        <div class="countdown-box">
+          <span id="countdown-minutes" class="countdown-number">00</span>
+          <span class="countdown-label">Min</span>
+        </div>
+        <div class="countdown-box">
+          <span id="countdown-seconds" class="countdown-number">00</span>
+          <span class="countdown-label">Seg</span>
+        </div>
+      </div>
+
+      <a href="#rsvp-section" class="btn-primary">Confirmar Asistencia</a>
+    </div>
+  </header>
+
+  <!-- NUESTRA HISTORIA & BIENVENIDA -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-subtitle">Estáis invitados</span>
+      <h2 class="section-title">Acompañadnos en Nuestro Gran Día</h2>
+    </div>
+    <p style="text-align: center; max-width: 680px; margin: 0 auto 2.5rem; font-size: 1.1rem; color: var(--text-muted);">
+      Queremos compartir la alegría de nuestro enlace con las personas más especiales de nuestras vidas. 
+      Nos encantará contar con vosotros en una velada mágica junto al embalse, con la propuesta gastronómica del chef Carlos Maldonado. ¡Preparad vuestras mejores sonrisas y calzado cómodo para bailar bajo las estrellas!
+    </p>
+  </section>
+
+  <!-- UBICACIONES & EVENTOS -->
+  <section class="section" style="background: rgba(255,255,255,0.4); border-radius: var(--radius-lg); margin-bottom: 4rem;">
+    <div class="section-header">
+      <span class="section-subtitle">Dónde & Cuándo</span>
+      <h2 class="section-title">Ubicación y Programa</h2>
+    </div>
+
+    <div class="events-grid" style="display: flex; justify-content: center;">
+      <!-- Tarjeta Única: Ceremonia & Celebración -->
+      <div class="card" style="max-width: 500px; width: 100%;">
+        <div class="card-icon">💍</div>
+        <h3 class="card-title">Ceremonia, Banquete & Fiesta</h3>
+        <p class="card-info">
+          <strong>Lugar:</strong> NÜA (Carlos Maldonado)<br>
+          <strong>Dirección:</strong> Av. de Miramar, 1 (Urb. Serranillos Playa, Cazalegas / San Román de los Montes)<br>
+          <strong>Hora:</strong> 18:00 h (Sábado, 4 de Septiembre de 2027)<br>
+          <strong>Detalle:</strong> Bienvenida, ceremonia civil en jardines, cóctel al atardecer junto al lago, banquete de autor y fiesta con barra libre.
+        </p>
+        <a href="https://maps.google.com/?q=Nua+Eventos+Av+de+Miramar+1+Serranillos+Playa" target="_blank" class="btn-outline">
+          📍 Ver Ubicación en Google Maps
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMULARIO RSVP -->
+  <section id="rsvp-section" class="section">
+    <div class="rsvp-section">
+      <div class="section-header" style="margin-bottom: 2rem;">
+        <span class="section-subtitle">Confirmación</span>
+        <h2 class="section-title">Formulario de Asistencia (RSVP)</h2>
+      </div>
+      
+      <p style="text-align: center; margin-bottom: 2.5rem; color: var(--text-muted);">
+        Por favor, rellena el formulario a continuación para que podamos tener todo listo a la perfección.
+      </p>
+
+      <form id="rsvp-form">
+        <!-- Nombre Completo -->
+        <div class="form-group">
+          <label for="fullName" class="form-label">Nombre y Apellidos *</label>
+          <input type="text" id="fullName" name="fullName" class="form-input" placeholder="Ej: María García López" required>
+        </div>
+
+        <!-- Confirmación de Asistencia -->
+        <div class="form-group">
+          <label class="form-label">¿Nos acompañarás en nuestro gran día? *</label>
+          <div class="radio-group">
+            <label class="custom-option">
+              <input type="radio" name="attendance" value="SI" checked required>
+              <span>¡Sí, allí estaré con vosotros! 🎉</span>
+            </label>
+            <label class="custom-option">
+              <input type="radio" name="attendance" value="NO" required>
+              <span>Sintiéndolo mucho, no podré asistir 😢</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Mensaje de Invitación Personal -->
+        <div class="form-group" style="background: rgba(196, 104, 81, 0.08); border-left: 4px solid var(--terracotta); padding: 1.2rem; border-radius: var(--radius-md); margin-top: 1.5rem; margin-bottom: 1.8rem;">
+          <p style="margin: 0; color: var(--primary-burgundy); font-weight: 500; font-size: 0.95rem; line-height: 1.5;">
+            ℹ️ <em>Esta invitación es personal e intransferible, queremos compartir este día con las personas a las que hemos mandado esta invitación, lo sentimos mucho.</em>
+          </p>
+        </div>
+
+        <!-- Menú Especial / Alergias -->
+        <div class="form-group">
+          <label class="form-label">Intolerancias, Alergias o Menú Especial</label>
+          <div class="checkbox-group">
+            <label class="custom-option">
+              <input type="checkbox" name="dietary" value="Ninguna">
+              <span>Ninguna</span>
+            </label>
+            <label class="custom-option">
+              <input type="checkbox" name="dietary" value="Celiaco/Sin Gluten">
+              <span>Celiaco / Sin Gluten</span>
+            </label>
+            <label class="custom-option">
+              <input type="checkbox" name="dietary" value="Vegetariano">
+              <span>Vegetariano</span>
+            </label>
+            <label class="custom-option">
+              <input type="checkbox" name="dietary" value="Vegano">
+              <span>Vegano</span>
+            </label>
+            <label class="custom-option">
+              <input type="checkbox" name="dietary" value="Intolerante a Lactosa">
+              <span>Intolerante a Lactosa</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Servicio de Autobús -->
+        <div class="form-group">
+          <label class="form-label">¿Harás uso del autobús de traslado? (Talavera de la Reina ↔ NÜA)</label>
+          <div class="radio-group">
+            <label class="custom-option">
+              <input type="radio" name="busRequired" value="SI_IDA_Y_VUELTA">
+              <span>Sí, ida y vuelta</span>
+            </label>
+            <label class="custom-option">
+              <input type="radio" name="busRequired" value="SOLO_IDA">
+              <span>Solo ida</span>
+            </label>
+            <label class="custom-option">
+              <input type="radio" name="busRequired" value="SOLO_VUELTA">
+              <span>Solo vuelta</span>
+            </label>
+            <label class="custom-option">
+              <input type="radio" name="busRequired" value="NO" checked>
+              <span>No, me desplazo en vehículo propio</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Canción recomendada -->
+        <div class="form-group">
+          <label for="songRequest" class="form-label">🎵 Canción indispensable para la fiesta</label>
+          <input type="text" id="songRequest" name="songRequest" class="form-input" placeholder="¡Dinos qué temazo no puede faltar en la pista de baile!">
+        </div>
+
+        <!-- Mensaje para los novios -->
+        <div class="form-group">
+          <label for="notes" class="form-label">Un mensaje o dedicatoria para Carlos y Andrea</label>
+          <textarea id="notes" name="notes" rows="3" class="form-textarea" placeholder="Déjanos un comentario o saludo especial..."></textarea>
+        </div>
+
+        <!-- Botón de Envío -->
+        <div style="text-align: center; margin-top: 2rem;">
+          <button type="submit" id="rsvp-submit-btn" class="btn-primary" style="width: 100%; max-width: 400px;">
+            Enviar Respuesta
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p class="font-serif" style="font-size: 1.4rem; margin-bottom: 0.5rem;">Carlos Gómez Lázaro & Andrea de Sousa Cubero</p>
+    <p>4 de Septiembre de 2027 • NÜA (Cazalegas - San Román / Talavera de la Reina)</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="rsvp_config.js?v=2"></script>
+  <script src="app.js?v=2"></script>
+</body>
+</html>

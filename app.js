@@ -1,8 +1,8 @@
-// Lógica de la Invitación Virtual - Carlos Gómez Lázaro & Andrea de Sousa Cubero
-
 document.addEventListener('DOMContentLoaded', () => {
   initCountdown();
   initFormInteractions();
+  initScrollReveal();
+  initHeroParallax();
 });
 
 /**
@@ -124,9 +124,6 @@ function saveResponseToLocalStorage(payload) {
   }
 }
 
-/**
- * Muestra notificación flotante elegante (Toast)
- */
 function showToast(message) {
   let toastEl = document.getElementById('toast-notification');
   if (!toastEl) {
@@ -143,3 +140,61 @@ function showToast(message) {
     toastEl.classList.remove('show');
   }, 4500);
 }
+
+/**
+ * Animaciones suaves de aparición al hacer scroll (Intersection Observer)
+ */
+function initScrollReveal() {
+  const reveals = document.querySelectorAll('.reveal-on-scroll');
+  if (!reveals.length) return;
+
+  if (!('IntersectionObserver' in window)) {
+    reveals.forEach(el => el.classList.add('is-visible'));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  reveals.forEach(el => observer.observe(el));
+}
+
+/**
+ * Efecto Parallax y desvanecimiento suave del Hero mientras el telón sube
+ */
+function initHeroParallax() {
+  const heroContent = document.querySelector('.hero-content');
+  if (!heroContent) return;
+
+  let ticking = false;
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
+        const vh = window.innerHeight;
+
+        if (scrollY <= vh) {
+          const ratio = scrollY / vh;
+          // Desvanecer sutilmente el contenido del Hero y moverlo ligeramente para dar profundidad
+          heroContent.style.opacity = Math.max(0, 1 - ratio * 1.3).toFixed(3);
+          heroContent.style.transform = `translateY(${Math.round(scrollY * 0.22)}px) scale(${(1 - ratio * 0.04).toFixed(3)})`;
+        } else {
+          heroContent.style.opacity = '0';
+        }
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+}
+

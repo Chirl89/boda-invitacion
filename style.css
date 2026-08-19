@@ -37,10 +37,14 @@ html {
 
 body {
   font-family: 'Outfit', sans-serif;
-  background-color: var(--soft-cream);
+  background-color: #1a0f12;
   color: var(--text-dark);
   line-height: 1.6;
-  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+body.alojamiento-page {
+  background-color: var(--soft-cream);
   background-image: 
     radial-gradient(circle at 10% 20%, rgba(196, 104, 81, 0.05) 0%, transparent 40%),
     radial-gradient(circle at 90% 80%, rgba(92, 29, 40, 0.05) 0%, transparent 40%);
@@ -55,25 +59,30 @@ body {
   font-family: 'Playfair Display', serif;
 }
 
-/* Hero Section */
+/* Hero Section (Fijo / Sticky que queda de fondo) */
 .hero {
-  position: relative;
-  min-height: 100vh;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 560px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 3rem 1.5rem;
-  background: linear-gradient(rgba(44, 37, 35, 0.35), rgba(92, 29, 40, 0.5)),
+  padding: 2.5rem 1.5rem 3rem;
+  background: linear-gradient(rgba(44, 37, 35, 0.4), rgba(92, 29, 40, 0.55)),
               url('portada.jpg') center 90%/cover no-repeat;
   color: #ffffff;
+  z-index: 1;
+  box-sizing: border-box;
 }
 
 .hero-overlay {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: radial-gradient(circle at center, transparent 30%, rgba(0, 0, 0, 0.4) 100%);
+  background: radial-gradient(circle at center, transparent 30%, rgba(0, 0, 0, 0.45) 100%);
 }
 
 .hero-content {
@@ -81,6 +90,8 @@ body {
   z-index: 2;
   max-width: 800px;
   animation: fadeIn 1.2s ease-out;
+  will-change: opacity, transform;
+  transition: opacity 0.1s linear, transform 0.1s linear;
 }
 
 .hero-subtitle {
@@ -104,20 +115,20 @@ body {
 
 .hero-date-badge {
   display: inline-block;
-  margin: 1.5rem 0 2rem;
-  padding: 0.6rem 1.8rem;
+  margin: 1.2rem 0 1.6rem;
+  padding: 0.5rem 1.8rem;
   border-top: 1px solid rgba(255, 255, 255, 0.4);
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   letter-spacing: 2px;
 }
 
 /* Cuenta Atrás */
 .countdown-container {
   display: flex;
-  gap: 1.2rem;
+  gap: 1.1rem;
   justify-content: center;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   flex-wrap: wrap;
 }
 
@@ -126,15 +137,15 @@ body {
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  padding: 1rem 1.2rem;
+  padding: 0.9rem 1.1rem;
   border-radius: var(--radius-md);
-  min-width: 85px;
+  min-width: 82px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
 .countdown-number {
   font-family: 'Playfair Display', serif;
-  font-size: 2.2rem;
+  font-size: 2.1rem;
   font-weight: 700;
   color: #ffffff;
   display: block;
@@ -150,7 +161,7 @@ body {
 /* Botones Principales */
 .btn-primary {
   display: inline-block;
-  padding: 1rem 2.5rem;
+  padding: 0.95rem 2.4rem;
   background: var(--gold-gradient);
   color: var(--primary-burgundy);
   font-weight: 600;
@@ -162,7 +173,7 @@ body {
   cursor: pointer;
   box-shadow: 0 4px 20px rgba(191, 149, 63, 0.4);
   transition: var(--transition);
-  margin-top: 2rem;
+  margin-top: 1.6rem;
 }
 
 .btn-primary:hover {
@@ -170,11 +181,75 @@ body {
   box-shadow: 0 8px 25px rgba(191, 149, 63, 0.6);
 }
 
+/* Indicador de Desplazamiento */
+.scroll-indicator {
+  margin-top: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.82rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  animation: bounceSlow 2.2s infinite ease-in-out;
+}
+
+.scroll-chevron {
+  stroke: #fcf6ba;
+}
+
+@keyframes bounceSlow {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+    opacity: 0.85;
+  }
+  40% {
+    transform: translateY(7px);
+    opacity: 1;
+  }
+  60% {
+    transform: translateY(3px);
+    opacity: 0.9;
+  }
+}
+
+/* Contenedor Principal (Telón que cubre el Hero) */
+.main-content-wrapper {
+  position: relative;
+  z-index: 10;
+  background-color: var(--soft-cream);
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(196, 104, 81, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(92, 29, 40, 0.05) 0%, transparent 40%);
+  border-radius: 36px 36px 0 0;
+  box-shadow: 0 -25px 60px rgba(0, 0, 0, 0.35);
+  padding-top: 1.8rem;
+  margin-top: 0;
+}
+
+.main-content-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 4px;
+  background: rgba(212, 175, 55, 0.45);
+  border-radius: 10px;
+}
+
 /* Estructura General de Secciones */
 .section {
-  padding: 2.2rem 1.25rem;
+  padding: 2.5rem 1.25rem;
   max-width: 760px;
   margin: 0 auto;
+}
+
+.welcome-section {
+  padding-top: 3.5rem;
+  padding-bottom: 2.2rem;
 }
 
 .welcome-text {
@@ -411,6 +486,19 @@ footer p {
   font-weight: 300;
 }
 
+/* Animación de Revelado al hacer Scroll */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Keyframes */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
@@ -419,16 +507,25 @@ footer p {
 
 /* Responsive Breakpoints */
 @media (max-width: 768px) {
-  .hero-title { font-size: 2.8rem; }
-  .section { padding: 1.6rem 1rem; }
+  .hero {
+    min-height: 520px;
+    padding: 2rem 1rem 2.5rem;
+  }
+  .hero-title { font-size: 2.7rem; }
+  .hero-subtitle { font-size: 1.8rem; }
+  .hero-date-badge { font-size: 0.95rem; padding: 0.4rem 1.2rem; margin: 1rem 0 1.2rem; }
+  .main-content-wrapper { border-radius: 28px 28px 0 0; }
+  .welcome-section { padding-top: 2.8rem; padding-bottom: 1.8rem; }
+  .section { padding: 1.8rem 1rem; }
   .section-header { margin-bottom: 1.4rem; }
   .section-title { font-size: 2rem; }
   .section-subtitle { font-size: 1.9rem; }
   .card { padding: 1.8rem 1.2rem; }
   .card-title { font-size: 1.45rem; }
   .rsvp-section { padding: 1.8rem 1.2rem; }
-  .countdown-box { min-width: 68px; padding: 0.7rem 0.6rem; }
-  .countdown-number { font-size: 1.6rem; }
+  .countdown-box { min-width: 65px; padding: 0.6rem 0.5rem; }
+  .countdown-number { font-size: 1.5rem; }
+  .btn-primary { padding: 0.85rem 2rem; font-size: 0.95rem; }
   .btn-outline { width: 100%; }
   .custom-option { width: 100%; border-radius: 12px; }
   footer { margin-top: 2rem; padding: 2.2rem 1rem; }

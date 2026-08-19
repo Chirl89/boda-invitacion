@@ -1,0 +1,401 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Confirmaciones (RSVP & CSV) | Carlos & Andrea</title>
+  <link rel="stylesheet" href="style.css?v=11">
+  <style>
+    .admin-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .stat-card {
+      background: #ffffff;
+      padding: 1.5rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-soft);
+      border-left: 4px solid var(--terracotta);
+      text-align: center;
+    }
+    .stat-card.confirmed {
+      border-left-color: #2e7d32;
+    }
+    .stat-card.declined {
+      border-left-color: #c62828;
+    }
+    .stat-card.bus {
+      border-left-color: var(--warm-gold);
+    }
+    .stat-number {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--primary-burgundy);
+      line-height: 1;
+      margin: 0.5rem 0 0.2rem;
+    }
+    .stat-label {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .action-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      background: #fff;
+      padding: 1.2rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-soft);
+    }
+    .table-container {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-soft);
+      overflow-x: auto;
+      padding: 1rem;
+    }
+    table.rsvp-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+      text-align: left;
+    }
+    table.rsvp-table th {
+      background: var(--soft-cream);
+      color: var(--primary-burgundy);
+      padding: 0.9rem 1rem;
+      font-weight: 600;
+      border-bottom: 2px solid var(--glass-border);
+      white-space: nowrap;
+    }
+    table.rsvp-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid #f0e6e4;
+      vertical-align: middle;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.6rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .badge-si { background: #e8f5e9; color: #2e7d32; }
+    .badge-no { background: #ffebee; color: #c62828; }
+    .badge-bus { background: #fff8e1; color: #b78103; }
+    .badge-diet { background: #f3e5f5; color: #6a1b9a; }
+  </style>
+</head>
+<body class="alojamiento-page">
+
+  <header class="hero-small">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <a href="index.html" class="back-link">← Volver a la Invitación</a>
+      <p class="hero-subtitle font-serif">Boda Carlos & Andrea</p>
+      <h1 class="hero-title font-serif" style="font-size: 2.6rem;">Panel de Confirmaciones (RSVP)</h1>
+      <p class="alojamiento-hero-desc">
+        Consulta las respuestas en tiempo real y descarga el archivo <strong>CSV / Excel</strong> con todas las opciones elegidas.
+      </p>
+    </div>
+  </header>
+
+  <main class="admin-container">
+
+    <!-- RESUMEN DE ESTADÍSTICAS -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Total Respuestas</div>
+        <div class="stat-number" id="stat-total">0</div>
+      </div>
+      <div class="stat-card confirmed">
+        <div class="stat-label">Confirmados (SÍ)</div>
+        <div class="stat-number" id="stat-yes" style="color: #2e7d32;">0</div>
+      </div>
+      <div class="stat-card declined">
+        <div class="stat-label">Declinados (NO)</div>
+        <div class="stat-number" id="stat-no" style="color: #c62828;">0</div>
+      </div>
+      <div class="stat-card bus">
+        <div class="stat-label">Plazas Autobús</div>
+        <div class="stat-number" id="stat-bus" style="color: #b78103;">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Menús Especiales</div>
+        <div class="stat-number" id="stat-dietary">0</div>
+      </div>
+    </div>
+
+    <!-- BARRA DE ACCIONES Y DESCARGA CSV -->
+    <div class="action-bar">
+      <div>
+        <h3 style="color: var(--primary-burgundy); margin-bottom: 0.2rem;">Descargar y Gestionar Datos</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">Exporta a CSV compatible con Microsoft Excel, Google Sheets o Apple Numbers.</p>
+      </div>
+      <div style="display: flex; gap: 0.8rem; flex-wrap: wrap;">
+        <button id="btn-export-csv" class="btn-primary" style="padding: 0.7rem 1.4rem; font-size: 0.95rem; cursor: pointer;">
+          📥 Descargar CSV (.csv)
+        </button>
+        <button id="btn-add-sample" class="btn-outline" style="padding: 0.7rem 1.2rem; font-size: 0.9rem; cursor: pointer;">
+          + Añadir Invitado Manual
+        </button>
+        <button id="btn-clear" class="btn-outline" style="padding: 0.7rem 1.2rem; font-size: 0.9rem; cursor: pointer; color: #c62828; border-color: #ef9a9a;">
+          🗑️ Limpiar Todo
+        </button>
+      </div>
+    </div>
+
+    <!-- TABLA DE RESPUESTAS -->
+    <div class="table-container">
+      <table class="rsvp-table" id="responses-table">
+        <thead>
+          <tr>
+            <th>Fecha Registro</th>
+            <th>Nombre Completo</th>
+            <th>Asistencia</th>
+            <th>Menú Especial</th>
+            <th>Autobús</th>
+            <th>Canción DJ</th>
+            <th>Dedicatoria / Notas</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+          <!-- Se llena dinámicamente con JavaScript -->
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top: 2rem; text-align: center;">
+      <a href="rsvp.html" class="btn-outline" style="margin-right: 1rem;">Ir al Formulario RSVP</a>
+      <a href="index.html" class="btn-primary">Ir a la Invitación Principal</a>
+    </div>
+
+  </main>
+
+  <script src="rsvp_config.js?v=2"></script>
+  <script>
+    const STORAGE_KEY = 'wedding_rsvp_responses';
+
+    // Cargar datos al iniciar
+    document.addEventListener('DOMContentLoaded', () => {
+      renderTable();
+
+      document.getElementById('btn-export-csv').addEventListener('click', downloadCSV);
+      document.getElementById('btn-add-sample').addEventListener('click', addManualGuest);
+      document.getElementById('btn-clear').addEventListener('click', clearAllResponses);
+    });
+
+    function getResponses() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+      } catch(e) {
+        return [];
+      }
+    }
+
+    function saveResponses(list) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+      renderTable();
+    }
+
+    function renderTable() {
+      const responses = getResponses();
+      const tbody = document.getElementById('table-body');
+      tbody.innerHTML = '';
+
+      let yesCount = 0;
+      let noCount = 0;
+      let busCount = 0;
+      let dietCount = 0;
+
+      if (responses.length === 0) {
+        tbody.innerHTML = 
+          <tr>
+            <td colspan="8" style="text-align: center; padding: 2rem; color: var(--text-muted);">
+              Aún no hay respuestas guardadas en el navegador.<br>
+              <small>Prueba a enviar una confirmación desde el <a href="rsvp.html" style="color: var(--terracotta); font-weight: 600;">formulario RSVP</a> o añade un invitado manualmente.</small>
+            </td>
+          </tr>
+        ;
+      } else {
+        responses.forEach((item, index) => {
+          const isYes = item.attendance === 'SI';
+          if (isYes) yesCount++; else noCount++;
+
+          const hasBus = item.busRequired && item.busRequired !== 'NO' && item.busRequired !== 'No especificado';
+          if (hasBus) busCount++;
+
+          const hasDiet = item.dietary && item.dietary !== 'Ninguna';
+          if (hasDiet) dietCount++;
+
+          const tr = document.createElement('tr');
+          const dateStr = item.timestamp ? new Date(item.timestamp).toLocaleString('es-ES') : '-';
+
+          tr.innerHTML = 
+            <td style="font-size: 0.82rem; color: var(--text-muted);"></td>
+            <td><strong></strong></td>
+            <td>
+              <span class="badge ">
+                
+              </span>
+            </td>
+            <td>
+              <span class="badge ">
+                
+              </span>
+            </td>
+            <td>
+              <span class="badge ">
+                
+              </span>
+            </td>
+            <td><em></em></td>
+            <td style="max-width: 220px; font-size: 0.85rem;"></td>
+            <td>
+              <button onclick="deleteResponse()" style="background: none; border: none; cursor: pointer; color: #c62828; font-size: 1rem;" title="Eliminar">🗑️</button>
+            </td>
+          ;
+          tbody.appendChild(tr);
+        });
+      }
+
+      // Actualizar contadores
+      document.getElementById('stat-total').innerText = responses.length;
+      document.getElementById('stat-yes').innerText = yesCount;
+      document.getElementById('stat-no').innerText = noCount;
+      document.getElementById('stat-bus').innerText = busCount;
+      document.getElementById('stat-dietary').innerText = dietCount;
+    }
+
+    function formatBus(busValue) {
+      if (!busValue || busValue === 'NO') return 'No';
+      if (busValue === 'SI_IDA_Y_VUELTA') return '🚌 Ida y Vuelta';
+      if (busValue === 'SOLO_IDA') return '🚌 Solo Ida';
+      if (busValue === 'SOLO_VUELTA') return '🚌 Solo Vuelta';
+      return busValue;
+    }
+
+    function deleteResponse(index) {
+      if (confirm('¿Eliminar este registro de respuesta?')) {
+        const responses = getResponses();
+        responses.splice(index, 1);
+        saveResponses(responses);
+      }
+    }
+
+    function clearAllResponses() {
+      if (confirm('¿Estás seguro de que deseas borrar todas las respuestas guardadas localmente?')) {
+        localStorage.removeItem(STORAGE_KEY);
+        renderTable();
+      }
+    }
+
+    function addManualGuest() {
+      const name = prompt('Nombre y apellidos del invitado:');
+      if (!name || !name.trim()) return;
+
+      const attendance = confirm(¿ asiste a la boda? (Aceptar = SÍ, Cancelar = NO)) ? 'SI' : 'NO';
+      const dietary = prompt('Alergias o menú especial (ej: Ninguna, Celiaco, Vegetariano):', 'Ninguna') || 'Ninguna';
+      const bus = prompt('¿Autobús? (SI_IDA_Y_VUELTA / SOLO_IDA / SOLO_VUELTA / NO):', 'NO') || 'NO';
+      const song = prompt('Canción que pide:', '-') || '-';
+      const notes = prompt('Notas / Dedicatoria:', 'Confirmado por WhatsApp') || '-';
+
+      const payload = {
+        timestamp: new Date().toISOString(),
+        fullName: name.trim(),
+        attendance: attendance,
+        companions: "Invitación personal",
+        dietary: dietary.trim(),
+        busRequired: bus.trim(),
+        songRequest: song.trim(),
+        notes: notes.trim(),
+        couple: "Carlos & Andrea"
+      };
+
+      const list = getResponses();
+      list.push(payload);
+      saveResponses(list);
+    }
+
+    function downloadCSV() {
+      const responses = getResponses();
+      
+      const headers = [
+        "Fecha Registro",
+        "Nombre Completo",
+        "Asistencia",
+        "Tipo Invitacion",
+        "Alergias / Menu Especial",
+        "Uso Autobus",
+        "Cancion DJ",
+        "Mensaje para los Novios"
+      ];
+
+      const rows = responses.map(r => [
+        r.timestamp ? new Date(r.timestamp).toLocaleString('es-ES') : '',
+        r.fullName || '',
+        r.attendance || '',
+        r.companions || 'Invitación personal',
+        r.dietary || 'Ninguna',
+        r.busRequired || 'NO',
+        r.songRequest || '',
+        r.notes || ''
+      ]);
+
+      // Si no hay datos, añadimos una fila de ejemplo
+      if (rows.length === 0) {
+        rows.push([
+          new Date().toLocaleString('es-ES'),
+          "Ejemplo: Carlos & Andrea",
+          "SI",
+          "Invitación personal",
+          "Ninguna",
+          "NO",
+          "Coldplay - Viva la Vida",
+          "¡Nos vemos en NÜA!"
+        ]);
+      }
+
+      // Crear contenido CSV
+      let csvContent = "";
+      csvContent += headers.map(h => "").join(",") + "\r\n";
+
+      rows.forEach(row => {
+        csvContent += row.map(val => "").join(",") + "\r\n";
+      });
+
+      // Añadir BOM (Byte Order Mark) UTF-8 para que Microsoft Excel abra acentos y eñes perfectamente
+      const blob = new Blob(["\uFEFF" + csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.setAttribute("href", url);
+      link.setAttribute("download", confirmaciones_boda_carlos_andrea_.csv);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+  </script>
+</body>
+</html>

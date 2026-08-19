@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
  * Contador en vivo hacia la fecha de la boda
  */
 function initCountdown() {
+  if (!document.getElementById('countdown-days')) return;
   const targetDate = new Date(WEDDING_CONFIG.date.iso).getTime();
 
   function update() {
@@ -43,6 +44,7 @@ function initCountdown() {
  */
 function initFormInteractions() {
   const rsvpForm = document.getElementById('rsvp-form');
+  if (!rsvpForm) return;
 
   // Procesar envío del formulario
   rsvpForm.addEventListener('submit', async (e) => {

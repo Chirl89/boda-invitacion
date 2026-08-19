@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confirmar Asistencia (RSVP) | Boda Carlos & Andrea</title>
+  <meta name="description" content="Formulario oficial de confirmación de asistencia (RSVP) para la boda de Carlos Gómez Lázaro y Andrea de Sousa Cubero el 4 de Septiembre de 2027.">
+  
+  <!-- CSS Principal -->
+  <link rel="stylesheet" href="style.css?v=11">
+</head>
+<body class="alojamiento-page">
+
+  <!-- HEADER / HERO RSVP -->
+  <header class="hero-small">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <a href="index.html" class="back-link">← Volver a la Invitación</a>
+      <p class="hero-subtitle font-serif">Boda Carlos & Andrea</p>
+      <h1 class="hero-title font-serif" style="font-size: 2.8rem; margin-bottom: 0.5rem;">Confirmación de Asistencia</h1>
+      <p class="alojamiento-hero-desc">
+        Por favor, rellena el formulario a continuación para que podamos tener todo listo a la perfección para el <strong>4 de Septiembre de 2027</strong> en <strong>NÜA</strong>.
+      </p>
+    </div>
+  </header>
+
+  <!-- CONTENEDOR PRINCIPAL RSVP -->
+  <main class="main-container" style="max-width: 800px; padding: 2.5rem 1.2rem;">
+
+    <div class="rsvp-section">
+      <div class="section-header" style="margin-bottom: 2rem;">
+        <span class="section-subtitle">Tu Respuesta</span>
+        <h2 class="section-title">Formulario RSVP</h2>
+      </div>
+
+      <form id="rsvp-form">
+        <!-- Nombre Completo -->
+        <div class="form-group">
+          <label for="fullName" class="form-label">Nombre y Apellidos *</label>
+          <input type="text" id="fullName" name="fullName" class="form-input" placeholder="Ej: María García López" required>
+        </div>
+
+        <!-- Confirmación de Asistencia -->
+        <div class="form-group">
+          <label class="form-label">¿Nos acompañarás en nuestro gran día? *</label>
+          <div class="radio-group">
+            <label class="custom-option">
+              <input type="radio" name="attendance" value="SI" checked required>
+              <span>¡Sí, allí estaré con vosotros! 🎉</span>
+            </label>
+            <label class="custom-option">
+              <input type="radio" name="attendance" value="NO" required>
+              <span>Sintiéndolo mucho, no podré asistir 😢</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Mensaje de Invitación Personal -->
+        <div class="form-group" style="background: rgba(196, 104, 81, 0.08); border-left: 4px solid var(--terracotta); padding: 1.2rem; border-radius: var(--radius-md); margin-top: 1.5rem; margin-bottom: 1.8rem;">
+          <p style="margin: 0; color: var(--primary-burgundy); font-weight: 500; font-size: 0.95rem; line-height: 1.5;">
+            ℹ️ <em>Esta invitación es personal e intransferible, queremos compartir este día con las personas a las que hemos mandado esta invitación, lo sentimos mucho.</em>
+          </p>
+        </div>
+
+        <!-- Menú Especial / Alergias -->
+        <div class="form-group">
+          <label class="form-label">Intolerancias, Alergias o Menú Especial</label>
+          <div class="checkbox-group">
+            <label class="custom-option">
+              <input type="checkbox" name="dietary" value="Ninguna">
+              <span>Ninguna</span>
+            </label>
+            <label class="custom-option">
+              <input type="checkbox" name="dietary" value="Celiaco/Sin Gluten">
+              <span>Celiaco / Sin Gluten</span>
+            </label>
+            <label class="custom-option">
+              <input type="checkbox" name="dietary" value="Vegetariano">
+              <span>Vegetariano</span>
+            </label>
+            <label class="custom-option">
+              <input type="checkbox" name="dietary" value="Vegano">
+              <span>Vegano</span>
+            </label>
+            <label class="custom-option">
+              <input type="checkbox" name="dietary" value="Intolerante a Lactosa">
+              <span>Intolerante a Lactosa</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Servicio de Autobús -->
+        <div class="form-group">
+          <label class="form-label">¿Harás uso del autobús de traslado? (Talavera de la Reina ↔ NÜA)</label>
+          <div class="radio-group">
+            <label class="custom-option">
+              <input type="radio" name="busRequired" value="SI_IDA_Y_VUELTA">
+              <span>Sí, ida y vuelta</span>
+            </label>
+            <label class="custom-option">
+              <input type="radio" name="busRequired" value="SOLO_IDA">
+              <span>Solo ida</span>
+            </label>
+            <label class="custom-option">
+              <input type="radio" name="busRequired" value="SOLO_VUELTA">
+              <span>Solo vuelta</span>
+            </label>
+            <label class="custom-option">
+              <input type="radio" name="busRequired" value="NO" checked>
+              <span>No, me desplazo en vehículo propio</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Canción recomendada -->
+        <div class="form-group">
+          <label for="songRequest" class="form-label">🎵 Canción indispensable para la fiesta</label>
+          <input type="text" id="songRequest" name="songRequest" class="form-input" placeholder="¡Dinos qué temazo no puede faltar en la pista de baile!">
+        </div>
+
+        <!-- Mensaje para los novios -->
+        <div class="form-group">
+          <label for="notes" class="form-label">Un mensaje o dedicatoria para Carlos y Andrea</label>
+          <textarea id="notes" name="notes" rows="3" class="form-textarea" placeholder="Déjanos un comentario o saludo especial..."></textarea>
+        </div>
+
+        <!-- Botón de Envío -->
+        <div style="text-align: center; margin-top: 2rem;">
+          <button type="submit" id="rsvp-submit-btn" class="btn-primary" style="width: 100%; max-width: 400px;">
+            Enviar Respuesta
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- BOTÓN FINAL DE REGRESO -->
+    <div style="text-align: center; margin: 3rem 0 1rem;">
+      <a href="index.html" class="btn-outline" style="font-size: 1rem; padding: 0.85rem 2rem;">
+        ← Volver a la Invitación Principal
+      </a>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p class="font-serif" style="font-size: 1.4rem; margin-bottom: 0.5rem;">Carlos Gómez Lázaro & Andrea de Sousa Cubero</p>
+    <p>4 de Septiembre de 2027 • NÜA (Cazalegas - San Román / Talavera de la Reina)</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="rsvp_config.js?v=2"></script>
+  <script src="app.js?v=5"></script>
+</body>
+</html>

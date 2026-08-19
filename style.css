@@ -398,3 +398,350 @@ footer p {
   .countdown-box { min-width: 70px; padding: 0.8rem 0.8rem; }
   .countdown-number { font-size: 1.7rem; }
 }
+
+/* ==========================================================================
+   Estilos para la Guía de Alojamientos (alojamiento.html)
+   ========================================================================== */
+
+.hero-small {
+  position: relative;
+  min-height: 45vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3.5rem 1.5rem 2.5rem;
+  background: linear-gradient(rgba(44, 37, 35, 0.5), rgba(92, 29, 40, 0.65)),
+              url('portada.jpg') center 80%/cover no-repeat;
+  color: #ffffff;
+}
+
+.back-link {
+  display: inline-block;
+  color: #fcf6ba;
+  text-decoration: none;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  padding: 0.4rem 1.2rem;
+  border-radius: 30px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(252, 246, 186, 0.3);
+  transition: var(--transition);
+}
+
+.back-link:hover {
+  background: rgba(0, 0, 0, 0.5);
+  border-color: #fcf6ba;
+  transform: translateX(-3px);
+}
+
+.alojamiento-hero-desc {
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 300;
+}
+
+.main-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+}
+
+.notice-card {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  background: #ffffff;
+  border-left: 5px solid var(--terracotta);
+  padding: 1.3rem 1.8rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  margin-bottom: 2.5rem;
+}
+
+.notice-icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.alojamiento-section {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 2rem;
+  margin-bottom: 3rem;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  position: relative;
+}
+
+.section-badge {
+  display: inline-block;
+  background: rgba(196, 104, 81, 0.12);
+  color: var(--terracotta);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.35rem 1rem;
+  border-radius: 30px;
+  margin-bottom: 0.8rem;
+}
+
+.alojamiento-title {
+  color: var(--primary-burgundy);
+  font-size: 1.9rem;
+  margin-bottom: 0.4rem;
+}
+
+.alojamiento-subtitle {
+  color: var(--text-muted);
+  font-size: 0.98rem;
+  margin-bottom: 1.5rem;
+}
+
+.contact-action-bar {
+  margin-bottom: 2rem;
+}
+
+.option-block {
+  margin-top: 1.5rem;
+}
+
+.option-header {
+  margin-bottom: 1.2rem;
+}
+
+.option-title-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.option-icon {
+  font-size: 2.2rem;
+  line-height: 1;
+}
+
+.option-title {
+  color: var(--primary-burgundy);
+  font-size: 1.35rem;
+  margin-bottom: 0.2rem;
+}
+
+.option-desc {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.units-available {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+  padding: 0.8rem 1.2rem;
+  background: var(--soft-cream);
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+}
+
+.badge-pill {
+  background: #ffffff;
+  border: 1px solid #d4af37;
+  color: var(--primary-burgundy);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+/* Tablas Tarifas */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid #e8dfd8;
+  margin-bottom: 1rem;
+}
+
+.tarifa-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.tarifa-table th {
+  background: var(--primary-burgundy);
+  color: #ffffff;
+  padding: 0.85rem 1rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+.tarifa-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid #eee6df;
+  color: var(--text-dark);
+}
+
+.tarifa-table tbody tr:nth-child(even) {
+  background: #fbf9f6;
+}
+
+.tarifa-table tbody tr:hover {
+  background: rgba(196, 104, 81, 0.08);
+}
+
+.tarifa-table tr.highlight-row {
+  background: rgba(212, 175, 55, 0.12) !important;
+  font-weight: 600;
+}
+
+.tarifa-table tr.highlight-row td:first-child {
+  color: var(--primary-burgundy);
+}
+
+.table-note {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-top: 0.6rem;
+}
+
+/* Grid Casas Rurales */
+.cards-grid-alojamiento {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.rural-card {
+  background: var(--soft-cream);
+  border: 1px solid #e2dad4;
+  border-radius: var(--radius-md);
+  padding: 1.5rem 1.2rem;
+  text-align: center;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.rural-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--terracotta);
+  box-shadow: var(--shadow-soft);
+}
+
+.rural-icon {
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: #ffffff;
+  color: var(--primary-burgundy);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  padding: 0.4rem 0.8rem;
+  border-radius: 30px;
+  display: inline-block;
+  margin-bottom: 0.8rem;
+}
+
+.rural-name {
+  color: var(--primary-burgundy);
+  font-size: 1.15rem;
+  margin-bottom: 0.3rem;
+}
+
+.rural-capacity {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 0.8rem;
+}
+
+.rural-price {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--primary-burgundy);
+  margin-bottom: 0.2rem;
+}
+
+.rural-price-sub {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.rural-per-person {
+  font-size: 0.85rem;
+  color: var(--terracotta);
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+.rural-tag {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  border-top: 1px dashed #ded4cc;
+  padding-top: 0.6rem;
+  margin-top: auto;
+}
+
+/* Grid Hostal */
+.hostal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.hostal-card {
+  background: var(--soft-cream);
+  border: 1px solid #e2dad4;
+  border-radius: var(--radius-md);
+  padding: 1.3rem 1.2rem;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.hostal-card:hover {
+  border-color: var(--terracotta);
+  background: #ffffff;
+}
+
+.hostal-type {
+  font-weight: 600;
+  color: var(--primary-burgundy);
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.hostal-price {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--terracotta);
+  margin-bottom: 0.2rem;
+}
+
+.hostal-price-sub {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.hostal-detail {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+  .hero-small { padding: 3rem 1rem 2rem; min-height: 40vh; }
+  .alojamiento-section { padding: 1.8rem 1.2rem; }
+  .tarifa-table { font-size: 0.85rem; }
+  .tarifa-table th, .tarifa-table td { padding: 0.6rem 0.5rem; }
+}

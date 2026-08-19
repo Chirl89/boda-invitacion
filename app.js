@@ -169,11 +169,12 @@ function initScrollReveal() {
 }
 
 /**
- * Efecto Parallax y desvanecimiento suave del Hero mientras el telón sube
+ * Efecto Parallax y desvanecimiento suave de capas al hacer scroll
  */
 function initHeroParallax() {
   const heroContent = document.querySelector('.hero-content');
-  if (!heroContent) return;
+  const welcomeContent = document.querySelector('.welcome-sheet-content');
+  const welcomeSheet = document.querySelector('.welcome-sheet');
 
   let ticking = false;
 
@@ -183,14 +184,32 @@ function initHeroParallax() {
         const scrollY = window.scrollY;
         const vh = window.innerHeight;
 
-        if (scrollY <= vh) {
-          const ratio = scrollY / vh;
-          // Desvanecer sutilmente el contenido del Hero y moverlo ligeramente para dar profundidad
-          heroContent.style.opacity = Math.max(0, 1 - ratio * 1.3).toFixed(3);
-          heroContent.style.transform = `translateY(${Math.round(scrollY * 0.22)}px) scale(${(1 - ratio * 0.04).toFixed(3)})`;
-        } else {
-          heroContent.style.opacity = '0';
+        // 1. Parallax en Hero (0 a 1 vh)
+        if (heroContent) {
+          if (scrollY <= vh) {
+            const ratio = scrollY / vh;
+            heroContent.style.opacity = Math.max(0, 1 - ratio * 1.3).toFixed(3);
+            heroContent.style.transform = `translateY(${Math.round(scrollY * 0.22)}px) scale(${(1 - ratio * 0.04).toFixed(3)})`;
+          } else {
+            heroContent.style.opacity = '0';
+          }
         }
+
+        // 2. Parallax en Welcome Sheet (1 vh a 2 vh)
+        if (welcomeContent && welcomeSheet) {
+          const welcomeTop = welcomeSheet.offsetTop;
+          if (scrollY >= welcomeTop && scrollY <= welcomeTop + vh) {
+            const ratio = (scrollY - welcomeTop) / vh;
+            welcomeContent.style.opacity = Math.max(0, 1 - ratio * 1.3).toFixed(3);
+            welcomeContent.style.transform = `translateY(${Math.round((scrollY - welcomeTop) * 0.2)}px) scale(${(1 - ratio * 0.04).toFixed(3)})`;
+          } else if (scrollY < welcomeTop) {
+            welcomeContent.style.opacity = '1';
+            welcomeContent.style.transform = 'none';
+          } else {
+            welcomeContent.style.opacity = '0';
+          }
+        }
+
         ticking = false;
       });
       ticking = true;

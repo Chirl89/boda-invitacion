@@ -214,21 +214,75 @@ body.alojamiento-page {
   }
 }
 
-/* Contenedor Principal (Telón que cubre el Hero) */
-.main-content-wrapper {
+/* Capa 2: Pantalla de Bienvenida (Se fija y cubre el Hero) */
+.welcome-sheet {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 520px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--soft-cream);
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(196, 104, 81, 0.06) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(92, 29, 40, 0.06) 0%, transparent 40%);
+  border-radius: 36px 36px 0 0;
+  box-shadow: 0 -25px 60px rgba(0, 0, 0, 0.35);
+  padding: 2.5rem 1.5rem;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.welcome-sheet::before {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 4px;
+  background: rgba(212, 175, 55, 0.5);
+  border-radius: 10px;
+}
+
+.welcome-sheet-content {
+  max-width: 760px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  will-change: opacity, transform;
+  transition: opacity 0.1s linear, transform 0.1s linear;
+}
+
+.scroll-indicator-dark {
+  color: var(--terracotta);
+  margin-top: 2.2rem;
+  font-weight: 500;
+}
+
+.scroll-indicator-dark .scroll-chevron {
+  stroke: var(--terracotta);
+}
+
+/* Capa 3: Contenedor de Tarjetas, Detalles y RSVP (Se desliza sobre la Bienvenida) */
+.cards-sheet-wrapper {
   position: relative;
-  z-index: 10;
+  z-index: 3;
   background-color: var(--soft-cream);
   background-image: 
     radial-gradient(circle at 10% 20%, rgba(196, 104, 81, 0.05) 0%, transparent 40%),
     radial-gradient(circle at 90% 80%, rgba(92, 29, 40, 0.05) 0%, transparent 40%);
   border-radius: 36px 36px 0 0;
-  box-shadow: 0 -25px 60px rgba(0, 0, 0, 0.35);
-  padding-top: 1.8rem;
+  box-shadow: 0 -25px 60px rgba(0, 0, 0, 0.25);
+  padding-top: 2.5rem;
   margin-top: 0;
 }
 
-.main-content-wrapper::before {
+.cards-sheet-wrapper::before {
   content: '';
   position: absolute;
   top: 14px;
@@ -247,17 +301,12 @@ body.alojamiento-page {
   margin: 0 auto;
 }
 
-.welcome-section {
-  padding-top: 3.5rem;
-  padding-bottom: 2.2rem;
-}
-
 .welcome-text {
   text-align: center;
   max-width: 680px;
   margin: 0 auto;
-  font-size: 1.08rem;
-  line-height: 1.7;
+  font-size: 1.12rem;
+  line-height: 1.75;
   color: var(--text-muted);
 }
 
@@ -514,8 +563,17 @@ footer p {
   .hero-title { font-size: 2.7rem; }
   .hero-subtitle { font-size: 1.8rem; }
   .hero-date-badge { font-size: 0.95rem; padding: 0.4rem 1.2rem; margin: 1rem 0 1.2rem; }
-  .main-content-wrapper { border-radius: 28px 28px 0 0; }
-  .welcome-section { padding-top: 2.8rem; padding-bottom: 1.8rem; }
+  .welcome-sheet {
+    min-height: 480px;
+    padding: 2rem 1.2rem;
+    border-radius: 28px 28px 0 0;
+  }
+  .welcome-text { font-size: 1.02rem; line-height: 1.65; }
+  .scroll-indicator-dark { margin-top: 1.6rem; font-size: 0.78rem; }
+  .cards-sheet-wrapper {
+    border-radius: 28px 28px 0 0;
+    padding-top: 1.8rem;
+  }
   .section { padding: 1.8rem 1rem; }
   .section-header { margin-bottom: 1.4rem; }
   .section-title { font-size: 2rem; }

@@ -7,7 +7,7 @@
   <meta name="description" content="Invitación oficial de boda de Carlos Gómez Lázaro y Andrea de Sousa Cubero el 4 de Septiembre de 2027. ¡Confirma tu asistencia!">
   
   <!-- CSS Principal -->
-  <link rel="stylesheet" href="style.css?v=9">
+  <link rel="stylesheet" href="style.css?v=10">
 </head>
 <body>
 
@@ -54,11 +54,9 @@
     </div>
   </header>
 
-  <!-- CONTENIDO PRINCIPAL: Se desliza cubriendo el Hero al hacer scroll -->
-  <main class="main-content-wrapper">
-
-    <!-- NUESTRA HISTORIA & BIENVENIDA -->
-    <section class="section welcome-section reveal-on-scroll">
+  <!-- BIENVENIDA & HISTORIA (Capa 2: Se desliza y se fija sobre el Hero) -->
+  <section class="welcome-sheet">
+    <div class="welcome-sheet-content">
       <div class="section-header">
         <span class="section-subtitle">Estáis invitados</span>
         <h2 class="section-title">Acompañadnos en Nuestro Gran Día</h2>
@@ -67,7 +65,19 @@
         Queremos compartir la alegría de nuestro enlace con las personas más especiales de nuestras vidas. 
         Nos encantará contar con vosotros en una velada mágica junto al embalse, con la propuesta gastronómica del chef Carlos Maldonado. ¡Preparad vuestras mejores sonrisas y calzado cómodo para bailar bajo las estrellas!
       </p>
-    </section>
+
+      <!-- Indicador sutil de scroll hacia las tarjetas -->
+      <div class="scroll-indicator scroll-indicator-dark">
+        <span>Desliza para detalles y alojamiento</span>
+        <svg class="scroll-chevron" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- DETALLES, TARJETAS Y RSVP (Capa 3: Se desliza cubriendo la Bienvenida) -->
+  <main class="cards-sheet-wrapper">
 
     <!-- UBICACIONES & EVENTOS -->
     <section class="section reveal-on-scroll">
@@ -231,6 +241,6 @@
 
   <!-- Scripts -->
   <script src="rsvp_config.js?v=2"></script>
-  <script src="app.js?v=3"></script>
+  <script src="app.js?v=4"></script>
 </body>
 </html>

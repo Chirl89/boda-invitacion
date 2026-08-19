@@ -67,7 +67,7 @@
           <label class="form-label">Intolerancias, Alergias o Menú Especial</label>
           <div class="checkbox-group">
             <label class="custom-option">
-              <input type="checkbox" name="dietary" value="Ninguna">
+              <input type="checkbox" name="dietary" value="Ninguna" id="dietary-none">
               <span>Ninguna</span>
             </label>
             <label class="custom-option">
@@ -86,6 +86,14 @@
               <input type="checkbox" name="dietary" value="Intolerante a Lactosa">
               <span>Intolerante a Lactosa</span>
             </label>
+            <label class="custom-option">
+              <input type="checkbox" name="dietary" value="Otras" id="dietary-other">
+              <span>Otras</span>
+            </label>
+          </div>
+          <!-- Campo de texto libre para 'Otras' -->
+          <div id="dietary-other-wrapper" style="display: none; margin-top: 0.9rem;">
+            <input type="text" id="dietaryOtherText" name="dietaryOtherText" class="form-input" placeholder="Especifica tus alergias, intolerancias o preferencias...">
           </div>
         </div>
 
@@ -157,6 +165,6 @@
 
   <!-- Scripts -->
   <script src="rsvp_config.js?v=2"></script>
-  <script src="app.js?v=5"></script>
+  <script src="app.js?v=6"></script>
 </body>
 </html>

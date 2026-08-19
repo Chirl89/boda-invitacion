@@ -46,6 +46,55 @@ function initFormInteractions() {
   const rsvpForm = document.getElementById('rsvp-form');
   if (!rsvpForm) return;
 
+  const dietaryCheckboxes = document.querySelectorAll('input[name="dietary"]');
+  const dietaryNone = document.getElementById('dietary-none');
+  const dietaryOther = document.getElementById('dietary-other');
+  const dietaryOtherWrapper = document.getElementById('dietary-other-wrapper');
+  const dietaryOtherText = document.getElementById('dietaryOtherText');
+
+  // Control de selección exclusiva para "Ninguna" y dinamismo para "Otras"
+  if (dietaryCheckboxes.length) {
+    dietaryCheckboxes.forEach(cb => {
+      cb.addEventListener('change', (e) => {
+        if (e.target.value === 'Ninguna' && e.target.checked) {
+          // Si marca "Ninguna", desmarcar todas las demás opciones
+          dietaryCheckboxes.forEach(otherCb => {
+            if (otherCb.value !== 'Ninguna') {
+              otherCb.checked = false;
+            }
+          });
+          if (dietaryOtherWrapper) {
+            dietaryOtherWrapper.style.display = 'none';
+          }
+        } else if (e.target.value !== 'Ninguna' && e.target.checked) {
+          // Si marca cualquier otra opción, desmarcar "Ninguna"
+          if (dietaryNone) {
+            dietaryNone.checked = false;
+          }
+        }
+
+        // Mostrar / ocultar campo libre si se marca / desmarca "Otras"
+        if (dietaryOther && dietaryOtherWrapper) {
+          if (dietaryOther.checked) {
+            dietaryOtherWrapper.style.display = 'block';
+            if (dietaryOtherText) dietaryOtherText.focus();
+          } else {
+            dietaryOtherWrapper.style.display = 'none';
+          }
+        }
+      });
+    });
+
+    if (dietaryOtherText) {
+      dietaryOtherText.addEventListener('input', () => {
+        if (dietaryOtherText.value.trim().length > 0) {
+          if (dietaryOther) dietaryOther.checked = true;
+          if (dietaryNone) dietaryNone.checked = false;
+        }
+      });
+    }
+  }
+
   // Procesar envío del formulario
   rsvpForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -59,7 +108,12 @@ function initFormInteractions() {
     const formData = new FormData(rsvpForm);
     const dietaryList = [];
     document.querySelectorAll('input[name="dietary"]:checked').forEach(cb => {
-      dietaryList.push(cb.value);
+      if (cb.value === 'Otras') {
+        const otherDetail = formData.get('dietaryOtherText')?.trim();
+        dietaryList.push(otherDetail ? `Otras (${otherDetail})` : 'Otras');
+      } else {
+        dietaryList.push(cb.value);
+      }
     });
 
     const payload = {
@@ -67,7 +121,7 @@ function initFormInteractions() {
       fullName: formData.get('fullName')?.trim(),
       attendance: formData.get('attendance'),
       companions: "Invitación personal (Sin acompañantes)",
-      dietary: dietaryList.join(', ') || "Ninguna",
+      dietary: dietaryList.length > 0 ? dietaryList.join(', ') : "Ninguna",
       busRequired: formData.get('busRequired') || "No especificado",
       songRequest: formData.get('songRequest')?.trim() || "-",
       notes: formData.get('notes')?.trim() || "-",
@@ -105,6 +159,7 @@ function initFormInteractions() {
       if (isSuccess) {
         showToast(`✨ ¡Gracias ${payload.fullName}! Tu respuesta se ha guardado correctamente.`);
         rsvpForm.reset();
+        if (dietaryOtherWrapper) dietaryOtherWrapper.style.display = 'none';
       } else {
         showToast("⚠️ Hubo un pequeño problema al enviar. Por favor, inténtalo de nuevo.");
       }

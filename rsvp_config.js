@@ -6,7 +6,7 @@ const WEDDING_CONFIG = {
     shortNames: "Carlos & Andrea"
   },
   date: {
-    iso: "2027-09-04T18:00:00", // 4 de Septiembre de 2027
+    iso: "2027-09-04T12:00:00", // 4 de Septiembre de 2027
     display: "Sábado, 4 de Septiembre de 2027",
     season: "Septiembre 2027"
   },
@@ -16,7 +16,7 @@ const WEDDING_CONFIG = {
       place: "NÜA (Carlos Maldonado)",
       address: "Av. de Miramar, 1, Urb. Serranillos Playa (Embalse de Cazalegas / San Román de los Montes, Toledo)",
       googleMapsUrl: "https://maps.google.com/?q=Nua+Eventos+Av+de+Miramar+1+Serranillos+Playa",
-      time: "18:00 h"
+      time: "12:00 h"
     }
   },
   // Configuración de recepción de datos RSVP (Google Sheets / Formspree / Webhook API)
